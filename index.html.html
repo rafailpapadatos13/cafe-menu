@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="el"> 
+<head>
+    <title>MENU CAFE - Το Project μου</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* --- ΓΕΝΙΚΟ ΣΤΥΛ ΣΕΛΙΔΑΣ --- */
+        body {
+            background-color: #E67E22; /* Το αρχικό σου πορτοκαλί */
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex; /* Flexbox για να μπει το μενού στο κέντρο */
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; /* Ύψος όσο όλη η οθόνη */
+        }
+
+        /* --- ΤΟ ΚΟΥΤΙ ΤΟΥ ΜΕΝΟΥ --- */
+        .menu-container {
+            background-color: #fffaf0; /* Κρεμ χρώμα για να μην κουράζει */
+            padding: 30px;
+            border-radius: 20px; /* Πιο στρογγυλεμένες γωνίες */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3); /* Επαγγελματική σκιά */
+            width: 100%;
+            max-width: 420px; /* Ιδανικό πλάτος για κινητά και desktop */
+            text-align: center;
+        }
+
+        h1 {
+            color: #d35400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #f39c12;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        /* --- ΤΑ ΚΟΥΜΠΙΑ ΚΑΤΗΓΟΡΙΩΝ (ACCORDION) --- */
+        details {
+            margin-bottom: 12px;
+            border-radius: 10px;
+            overflow: hidden; /* Για να μην εξέχουν τα περιεχόμενα */
+            transition: 0.3s;
+        }
+
+        summary {
+            background-color: #f39c12;
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            list-style: none; /* Αφαιρούμε το βελάκι του browser */
+            display: flex;
+            justify-content: space-between; /* Τίτλος αριστερά, βέλος δεξιά */
+            transition: 0.3s;
+        }
+
+        summary:hover { background-color: #d35400; }
+
+        /* Προσθήκη δικού μας συμβόλου (βελάκι) */
+        summary::after { content: "⊕"; } 
+        details[open] summary::after { content: "⊖"; }
+
+        /* --- ΠΕΡΙΕΧΟΜΕΝΟ ΚΑΤΕΓΟΡΙΩΝ --- */
+        .category-content {
+            background-color: white;
+            padding: 15px;
+            animation: fadeIn 0.5s ease; /* Εφέ εμφάνισης */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- ΣΕΙΡΑ ΠΡΟΪΟΝΤΟΣ --- */
+        .menu-item {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .item-main {
+            display: flex;
+            justify-content: space-between; /* Όνομα αριστερά - Τιμή δεξιά */
+            align-items: baseline;
+        }
+
+        /* Η γραμμή που ενώνει όνομα και τιμή */
+        .item-main::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px dotted #ccc;
+            margin: 0 10px;
+        }
+
+        .item-name { font-weight: bold; color: #333; order: -1; }
+        .price { font-weight: bold; color: #E67E22; order: 1; }
+
+        /* Περιγραφή προϊόντος */
+        .description {
+            font-size: 0.85rem;
+            color: #777;
+            font-style: italic;
+            margin: 3px 0 0 0;
+        }
+
+        /* --- ΚΟΥΜΠΙ ΠΑΡΑΓΓΕΛΙΑΣ --- */
+        .order-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 15px 35px;
+            background-color: #27ae60;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
+        }
+
+        .order-btn:hover {
+            background-color: #2ecc71;
+            transform: scale(1.05); /* Μεγαλώνει λίγο στο hover */
+        }
+
+        /* Εφέ Παλμού για να τραβάει την προσοχή */
+        .pulse { animation: pulse-eff 2s infinite; }
+        @keyframes pulse-eff {
+            0% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(39, 174, 96, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-container">
+        <h1>Cafe Menu</h1>
+
+        <details>
+            <summary>ΚΑΦΕΔΕΣ</summary>
+            <div class="category-content">
+                <div class="menu-item">
+                    <div class="item-main">
+                        <span class="item-name">FREDDO ESPRESSO</span>
+                        <span class="price">2.50€</span>
+                    </div>
+                    <p class="description">Διπλή δόση espresso με πλούσιο αφρόπαγο.</p>
+                </div>
+                <div class="menu-item">
+                    <div class="item-main">
+                        <span class="item-name">ΕΛΛΗΝΙΚΟΣ</span>
+                        <span class="price">1.50€</span>
+                    </div>
+                    <p class="description">Παραδοσιακός, σιγοψημένος στη χόβολη.</p>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>ΑΝΑΨΥΚΤΙΚΑ</summary>
+            <div class="category-content">
+                <div class="menu-item">
+                    <div class="item-main">
+                        <span class="item-name">COCA COLA</span>
+                        <span class="price">2.00€</span>
+                    </div>
+                    <p class="description">330ml, σερβίρεται με πάγο και λεμόνι.</p>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>SNACKS</summary>
+            <div class="category-content">
+                <div class="menu-item">
+                    <div class="item-main">
+                        <span class="item-name">TOAST</span>
+                        <span class="price">2.80€</span>
+                    </div>
+                    <p class="description">Με τυρί edam, γαλοπούλα και φρέσκια ντομάτα.</p>
+                </div>
+            </div>
+        </details>
+
+        <a href="tel:1234567890" class="order-btn pulse">ΠΑΡΑΓΓΕΛΙΑ ΤΩΡΑ</a>
+    </div>
+
+</body>
+</html>
